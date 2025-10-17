@@ -1,0 +1,19 @@
+---
+- name: Nginx install and setup
+  hosts: worker_node
+  become: true
+
+  tasks:
+    - name: update apt
+      apt:
+        update_cache: yes
+
+    - name: install Nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: start nginx
+      service:
+        name: nginx
+        state: started
